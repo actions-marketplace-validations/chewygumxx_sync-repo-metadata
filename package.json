@@ -9,10 +9,10 @@
         "metadata"
     ],
     "engines": {
-        "node": ">=24"
+        "node": "24.x"
     },
     "scripts": {
-        "prepare": "husky || true"
+        "prepare": "test -d node_modules/husky && husky || true"
     },
     "dependencies": {
         "ajv": "^8.0.0",
