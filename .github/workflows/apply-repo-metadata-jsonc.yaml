@@ -9,10 +9,11 @@
 #
 
 name: Apply repository metadata (JSONC)
-description: 
-    Applies metadata to a repository according to :/.repo-metadata.jsonc
+
 on:
     push:
+        branches:
+            - main
         paths:
             - .repo-metadata.jsonc
     workflow_dispatch: {}
@@ -44,7 +45,7 @@ jobs:
                   private-key: ${{ secrets.METADATA_APP_PRIVATE_KEY }}
                   permission-administration: write
 
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v7
 
             - name: Apply Metadata
               uses: chewygumxx/apply-repo-metadata-jsonc@v2
