@@ -26,9 +26,9 @@ runs:
     using: composite
     steps:
         - name: Initialise Node.js
-          uses: actions/setup-node@v5
+          uses: actions/setup-node@v7
           with:
-              node-version: '22'
+              node-version-file: 'package.json'
 
         - name: Install Dependencies
           shell: bash
