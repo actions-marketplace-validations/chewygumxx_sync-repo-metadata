@@ -69,14 +69,15 @@ function envParse(env) {
     }
 
     return {
-        ghAPIURL: ghAPIURL,
-        token:    token,
-        slug:     slug,
-        metadata: metadata,
+        ghAPIURL:    ghAPIURL,
+        token:       token,
+        slug:        slug,
+        metadata:    metadata,
+        metadataDir: path.dirname(absolutePath),
     };
 }
 
-async function metaParse(meta) {
+async function metaParse(meta, metadataDir) {
     // Validate JSONSchema URL
     if (!validSchemaPattern.test(meta.$schema)) throw new Error(
         `Failed to validate URL of metadata JSONschema: ${meta.$schema}\n` +
@@ -106,6 +107,15 @@ async function metaParse(meta) {
         fmt(validate.errors)
     ].join('\n'));
     console.log("[INFO] Validated metadata successfully");
+
+    // Validate referenced license file exists
+    if (meta.license && meta.license.filepath) {
+        const licensePath = path.resolve(metadataDir, meta.license.filepath);
+        if (!fs.existsSync(licensePath)) throw new Error(
+            `License file not found: ${licensePath}\n` +
+            `.repo-metadata.jsonc -> license.filepath: ${meta.license.filepath}`
+        );
+    }
 
     // Parse
     return {
@@ -180,7 +190,7 @@ async function main() {
 
     let repo;
     try {
-        repo = await metaParse(env.metadata);
+        repo = await metaParse(env.metadata, env.metadataDir);
     } catch (err) {
         console.error("[FATAL] Failed to parse metadata:", err.message || err);
         process.exit(1);
