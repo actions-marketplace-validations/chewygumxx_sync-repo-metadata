@@ -1,6 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id":     "https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2.0.0/schema.json",
+    "$id":     "https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2.0.0/schema.json",
 
     "title": "Repository metadata",
     "description": "Governs the '.repo-metadata.jsonc' file at the root of a given repository.",
@@ -12,10 +12,10 @@
         "$schema": {
             "type": "string",
             "description": "Identifying HTTPS URL of the governing JSONschema. Must reference either the floating major-version tag (e.g. v2) or an exact, immutable release tag under it (e.g. v2.0.0).",
-            "pattern": "^https://raw\\.githubusercontent\\.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2(?:\\.\\d+\\.\\d+)?/schema\\.json$",
+            "pattern": "^https://raw\\.githubusercontent\\.com/chewygumxx/sync-repo-metadata/refs/tags/v2(?:\\.\\d+\\.\\d+)?/schema\\.json$",
             "examples": [
-                "https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2/schema.json",
-                "https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2.0.0/schema.json"
+                "https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2/schema.json",
+                "https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2.0.0/schema.json"
             ]
         },
         "name": {

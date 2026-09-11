@@ -3,12 +3,12 @@
 
 #
 #
-# ~chewygumxx/apply-repo-metadata-jsonc.git
-# ::: :/.github/workflows/apply-repo-metadata-jsonc.yaml
+# ~chewygumxx/sync-repo-metadata.git
+# ::: :/.github/workflows/sync-repo-metadata.yaml
 #
 #
 
-name: Apply repository metadata (JSONC)
+name: Sync repository metadata
 
 on:
     push:
@@ -48,7 +48,7 @@ jobs:
             - uses: actions/checkout@v7
 
             - name: Apply Metadata
-              uses: chewygumxx/apply-repo-metadata-jsonc@v2
+              uses: chewygumxx/sync-repo-metadata@v2
               with:
                   metadata_path: .repo-metadata.jsonc
                   token: ${{ steps.app-token.outputs.token }}

@@ -1,5 +1,5 @@
 {
-    "name": "apply-repo-metadata-jsonc",
+    "name": "sync-repo-metadata",
     "description": "[GitHub Action] Applies metadata to a repository according to :/.repo-metadata.jsonc",
     "version": "2.0.0",
     "license": "GPL-3.0-only",

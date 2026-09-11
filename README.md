@@ -3,7 +3,7 @@
 
 <!--
    -
-   - ~chewygumxx/apply-repo-metadata-jsonc.git
+   - ~chewygumxx/sync-repo-metadata.git
    - ::: :/README.md
    -
    -->
@@ -13,7 +13,7 @@
    - :/.repo-metadata.jsonc
    -->
 
-# apply-repo-metadata-jsonc
+# sync-repo-metadata
 
 A composite GitHub Action that reads `.repo-metadata.jsonc` from the consuming
 repo and pushes repository settings including description, homepage, topics,
@@ -28,7 +28,7 @@ the floating major-version tag (`v2`) or an exact release tag (`v2.0.0`).
 
 ```yaml
 - name: Apply Metadata
-  uses: chewygumxx/apply-repo-metadata-jsonc@v2
+  uses: chewygumxx/sync-repo-metadata@v2
   with:
       metadata_path: .repo-metadata.jsonc     # Optional, this is the default
       token: ${{ secrets.SOME_ADMIN_TOKEN }}  # Required, see "Token permissions" below
@@ -59,7 +59,7 @@ scopes exposed by a workflow's `permissions:` block, so no `permissions:`
 configuration makes `${{ github.token }}` work here. This is why `token` has no
 default and must always be supplied explicitly. The recommended approach is to
 mint one from a GitHub App installed on the repo/org (see
-[`.github/workflows/apply-repo-metadata-jsonc.yaml`](.github/workflows/apply-repo-metadata-jsonc.yaml)
+[`.github/workflows/sync-repo-metadata.yaml`](.github/workflows/sync-repo-metadata.yaml)
 for a full example using [`actions/create-github-app-token`][app-token]):
 
 ```yaml
@@ -74,7 +74,7 @@ for a full example using [`actions/create-github-app-token`][app-token]):
 - uses: actions/checkout@v5
 
 - name: Apply Metadata
-  uses: chewygumxx/apply-repo-metadata-jsonc@v2
+  uses: chewygumxx/sync-repo-metadata@v2
   with:
       token: ${{ steps.app-token.outputs.token }}
 ```
@@ -87,10 +87,10 @@ for a full example using [`actions/create-github-app-token`][app-token]):
 ```jsonc
 {
     // Required: $schema
-    "$schema": "https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2/schema.json",
-    "name":  "apply-repo-metadata-jsonc",
+    "$schema": "https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2/schema.json",
+    "name":  "sync-repo-metadata",
     "owner": "chewygumxx",
-    "slug":  "chewygumxx/apply-repo-metadata-jsonc",
+    "slug":  "chewygumxx/sync-repo-metadata",
     "default_branch": "main",
     "category": "github-action",
     "topics": [ "github-action", "metadata", "repository" ],

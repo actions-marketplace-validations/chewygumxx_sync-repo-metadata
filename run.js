@@ -3,7 +3,7 @@
 
 //
 //
-// ~chewygumxx/apply-repo-metadata-jsonc.git
+// ~chewygumxx/sync-repo-metadata.git
 // ::: :/run.js
 //
 //
@@ -20,7 +20,7 @@ const Ajv         = require("ajv");
 const addFormats  = require("ajv-formats");
 const jsoncParser = require("jsonc-parser");
 
-const validSchemaPattern = /^https:\/\/raw\.githubusercontent\.com\/chewygumxx\/apply-repo-metadata-jsonc\/refs\/tags\/v2(?:\.\d+\.\d+)?\/schema\.json$/;
+const validSchemaPattern = /^https:\/\/raw\.githubusercontent\.com\/chewygumxx\/sync-repo-metadata\/refs\/tags\/v2(?:\.\d+\.\d+)?\/schema\.json$/;
 
 function validURL(url) {
     try{ new URL(url); return url; } catch { return false; }
@@ -82,8 +82,8 @@ async function metaParse(meta, metadataDir) {
     if (!validSchemaPattern.test(meta.$schema)) throw new Error(
         `Failed to validate URL of metadata JSONschema: ${meta.$schema}\n` +
         `Must match: ${validSchemaPattern.source}\n` +
-        "e.g. https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2/schema.json\n" +
-        "  or https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2.0.0/schema.json"
+        "e.g. https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2/schema.json\n" +
+        "  or https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2.0.0/schema.json"
     );
 
     // Fetch JSONschema
@@ -154,7 +154,7 @@ async function ghFetch(env, apiPath, method = 'GET', body = null) {
     const headers = {
         'Authorization': `token ${env.token}`,
         'Accept': 'application/vnd.github+json',
-        'User-Agent': 'chewygumxx/apply-repo-metadata-jsonc@v2'
+        'User-Agent': 'chewygumxx/sync-repo-metadata@v2'
     };
     if (body !== null) {
         headers['Content-Type'] = 'application/json';

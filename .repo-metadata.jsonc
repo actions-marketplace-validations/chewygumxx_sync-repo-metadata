@@ -3,16 +3,16 @@
 
 //
 //
-// ~chewygumxx/apply-repo-metadata-jsonc.git
+// ~chewygumxx/sync-repo-metadata.git
 // ::: :/.repo-metadata.jsonc
 //
 //
 
 {
-    "$schema": "https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2/schema.json",
-    "name":  "apply-repo-metadata-jsonc",
+    "$schema": "https://raw.githubusercontent.com/chewygumxx/sync-repo-metadata/refs/tags/v2/schema.json",
+    "name":  "sync-repo-metadata",
     "owner": "chewygumxx",
-    "slug":  "chewygumxx/apply-repo-metadata-jsonc",
+    "slug":  "chewygumxx/sync-repo-metadata",
     "default_branch": "main",
     "description": "[GitHub Action] Applies metadata to a repository according to :/.repo-metadata.jsonc",
     "category": "github-action",
