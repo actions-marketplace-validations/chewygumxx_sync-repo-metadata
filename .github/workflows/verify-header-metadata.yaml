@@ -1,0 +1,35 @@
+# vim:set expandtab shiftwidth=4 filetype=yaml foldlevel=5:
+# SPDX-License-Identifier: GPL-3.0-only
+
+#
+#
+# ~chewygumxx/apply-repo-metadata-jsonc.git
+# ::: :/.github/workflows/sync-header-metadata.yaml
+#
+#
+
+name: Verify Header Metadata
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+    workflow_dispatch: {}
+
+permissions:
+    contents: read
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v7
+
+            - name: Verify tracked files
+              uses: chewygumxx/sync-header-metadata@v2
+              with:
+                  mode:        verify
+                  verbose:    'false'
+                  annotation: 'false'
