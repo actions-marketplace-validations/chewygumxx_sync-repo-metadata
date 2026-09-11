@@ -111,7 +111,7 @@ async function metaParse(meta, metadataDir) {
     // Validate referenced license file exists
     if (meta.license && meta.license.filepath) {
         const licensePath = path.resolve(metadataDir, meta.license.filepath);
-        if (!fs.existsSync(licensePath)) throw new Error(
+        if (!fs.statSync(licensePath, { throwIfNoEntry: false })?.isFile()) throw new Error(
             `License file not found: ${licensePath}\n` +
             `.repo-metadata.jsonc -> license.filepath: ${meta.license.filepath}`
         );
