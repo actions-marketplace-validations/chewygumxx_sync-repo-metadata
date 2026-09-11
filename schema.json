@@ -68,7 +68,8 @@
             "properties": {
                 "filepath": {
                     "type": "string",
-                    "description": "Filepath of license file to relative to repo-metadata object file"
+                    "description": "Filepath of license file to relative to repo-metadata object file",
+                    "minLength": 1
                 },
                 "spdx_id": {
                     "type": "string",
