@@ -20,7 +20,7 @@ const Ajv         = require("ajv");
 const addFormats  = require("ajv-formats");
 const jsoncParser = require("jsonc-parser");
 
-const validSchema = "https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2/schema.json";
+const validSchemaPattern = /^https:\/\/raw\.githubusercontent\.com\/chewygumxx\/apply-repo-metadata-jsonc\/refs\/tags\/v2(?:\.\d+\.\d+)?\/schema\.json$/;
 
 function validURL(url) {
     try{ new URL(url); return url; } catch { return false; }
@@ -77,11 +77,15 @@ function envParse(env) {
 }
 
 async function metaParse(meta) {
-    // Fetch JSONschema
-    if (meta.$schema !== validSchema) throw new Error(
+    // Validate JSONSchema URL
+    if (!validSchemaPattern.test(meta.$schema)) throw new Error(
         `Failed to validate URL of metadata JSONschema: ${meta.$schema}\n` +
-        `Must be: ${validSchema}`
+        `Must match: ${validSchemaPattern.source}\n` +
+        "e.g. https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2/schema.json\n" +
+        "  or https://raw.githubusercontent.com/chewygumxx/apply-repo-metadata-jsonc/refs/tags/v2.0.0/schema.json"
     );
+
+    // Fetch JSONschema
     const response = await fetch(meta.$schema);
     const text = await response.text();
     let schema;

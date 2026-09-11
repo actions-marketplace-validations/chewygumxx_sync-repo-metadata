@@ -21,7 +21,8 @@ visibility, merge/branch options, feature toggles, and immutable releases to
 GitHub via the REST API.
 
 The metadata file is validated against the [JSON Schema](<./schema.json>)
-fetched at runtime from its own `$schema` field.
+fetched at runtime from its own `$schema` field. `$schema` may reference either
+the floating major-version tag (`v2`) or an exact release tag (`v2.0.0`).
 
 ## Usage
 
