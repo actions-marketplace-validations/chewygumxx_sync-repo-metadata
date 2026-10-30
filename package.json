@@ -1,7 +1,7 @@
 {
     "name": "sync-repo-metadata",
     "description": "[GitHub Action] Applies metadata to a repository according to :/.repo-metadata.jsonc",
-    "version": "2.0.0",
+    "version": "2.2.0",
     "license": "GPL-3.0-only",
     "keywords": [
         "github-action",
@@ -9,7 +9,7 @@
         "metadata"
     ],
     "engines": {
-        "node": "24.x"
+        "bun": ">=1.4"
     },
     "scripts": {
         "prepare": "test -d node_modules/husky && husky || true"
@@ -20,8 +20,8 @@
         "jsonc-parser": "^3.0.0"
     },
     "devDependencies": {
+        "@chewygumxx/commitlint-config": "^1.1.0",
         "@commitlint/cli": "^21.2.2",
-        "@commitlint/config-conventional": "^21.2.2",
         "@eslint/js": "^10.0.1",
         "eslint": "^10.9.1",
         "globals": "^17.11.0",
